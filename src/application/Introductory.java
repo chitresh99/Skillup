@@ -2,6 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+
+//back button code :- 
+
+//homepage homepageFrame = new homepage();
+//
+//        homepageFrame.setVisible(true);
+//
+//        this.dispose();
+
 package application;
 
 /**
@@ -92,6 +102,11 @@ public class Introductory extends javax.swing.JFrame {
         });
 
         Educator.setText("Educator");
+        Educator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EducatorActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -199,6 +214,17 @@ public class Introductory extends javax.swing.JFrame {
         // Close the current introductory frame
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void EducatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EducatorActionPerformed
+        // TODO add your handling code here:
+        admindashboard admindashboardframeFrame = new admindashboard();
+
+        // Set the login frame to be visible
+        admindashboardframeFrame.setVisible(true);
+
+        // Close the current introductory frame
+        this.dispose();
+    }//GEN-LAST:event_EducatorActionPerformed
 
     /**
      * @param args the command line arguments

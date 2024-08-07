@@ -31,10 +31,10 @@ public class admindashboard extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cohort = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        announce = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,17 +71,27 @@ public class admindashboard extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Check Status for students");
 
-        jButton1.setText("Cohort");
+        cohort.setText("Cohort");
+        cohort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cohortActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Internships");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Make announcements");
 
-        jButton3.setText("Announce");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        announce.setText("Announce");
+        announce.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                announceActionPerformed(evt);
             }
         });
 
@@ -93,9 +103,9 @@ public class admindashboard extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
+                    .addComponent(announce)
                     .addComponent(jButton2)
-                    .addComponent(jButton1)
+                    .addComponent(cohort)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -107,13 +117,13 @@ public class admindashboard extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(cohort)
                 .addGap(27, 27, 27)
                 .addComponent(jButton2)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(announce)
                 .addGap(0, 149, Short.MAX_VALUE))
         );
 
@@ -146,11 +156,39 @@ public class admindashboard extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void announceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_announceActionPerformed
+        adminannouncement adminannounceFrame = new adminannouncement();
+
+        // Set the login frame to be visible
+        adminannounceFrame.setVisible(true);
+
+        // Close the current introductory frame
+        this.dispose();
+    }//GEN-LAST:event_announceActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        internshipapproval approvalportalinterFrame = new internshipapproval();
+
+        // Set the login frame to be visible
+        approvalportalinterFrame.setVisible(true);
+
+        // Close the current introductory frame
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cohortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cohortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        approvalportal approvalportalFrame = new approvalportal();
+
+        // Set the login frame to be visible
+        approvalportalFrame.setVisible(true);
+
+        // Close the current introductory frame
+        this.dispose();
+    }//GEN-LAST:event_cohortActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,9 +226,9 @@ public class admindashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton announce;
+    private javax.swing.JButton cohort;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
