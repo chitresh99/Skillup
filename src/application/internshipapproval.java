@@ -29,6 +29,7 @@ public class internshipapproval extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        Back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         internshiptable = new javax.swing.JTable();
         approve = new javax.swing.JButton();
@@ -43,12 +44,21 @@ public class internshipapproval extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Adobe Clean Black", 0, 14)); // NOI18N
         jLabel1.setText("Admin approval (Internship)");
 
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(261, 261, 261)
+                .addGap(23, 23, 23)
+                .addComponent(Back)
+                .addGap(163, 163, 163)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -56,7 +66,9 @@ public class internshipapproval extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Back))
                 .addGap(15, 15, 15))
         );
 
@@ -68,7 +80,7 @@ public class internshipapproval extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Name of the Student", "Student ID", "Certificate Upload status", "Cohort Name", "Mark status"
+                "Name of the Student", "Student ID", "Certificate Upload status", "VACS Name", "Mark status"
             }
         ));
         jScrollPane1.setViewportView(internshiptable);
@@ -116,6 +128,16 @@ public class internshipapproval extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        admindashboard admindashboardFrame = new admindashboard();
+
+        // Set the login frame to be visible
+        admindashboardFrame.setVisible(true);
+
+        // Close the current introductory frame
+        this.dispose();
+    }//GEN-LAST:event_BackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -152,6 +174,7 @@ public class internshipapproval extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JButton Back;
     private javax.swing.JButton approve;
     private javax.swing.JTable internshiptable;
     private javax.swing.JLabel jLabel1;

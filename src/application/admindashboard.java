@@ -30,9 +30,10 @@ public class admindashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        Back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cohort = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        internshipapproval = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         announce = new javax.swing.JButton();
 
@@ -50,12 +51,16 @@ public class admindashboard extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ADMIN DASHBOARD");
 
+        Back.setText("Back");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(289, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(Back)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(246, 246, 246))
         );
@@ -63,7 +68,9 @@ public class admindashboard extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Back))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -78,10 +85,10 @@ public class admindashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Internships");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        internshipapproval.setText("Internships");
+        internshipapproval.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                internshipapprovalActionPerformed(evt);
             }
         });
 
@@ -104,7 +111,7 @@ public class admindashboard extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(announce)
-                    .addComponent(jButton2)
+                    .addComponent(internshipapproval)
                     .addComponent(cohort)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -119,7 +126,7 @@ public class admindashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cohort)
                 .addGap(27, 27, 27)
-                .addComponent(jButton2)
+                .addComponent(internshipapproval)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -169,7 +176,7 @@ public class admindashboard extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_announceActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void internshipapprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_internshipapprovalActionPerformed
         internshipapproval approvalportalinterFrame = new internshipapproval();
 
         // Set the login frame to be visible
@@ -177,7 +184,7 @@ public class admindashboard extends javax.swing.JFrame {
 
         // Close the current introductory frame
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_internshipapprovalActionPerformed
 
     private void cohortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cohortActionPerformed
         // TODO add your handling code here:
@@ -226,9 +233,10 @@ public class admindashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
     private javax.swing.JButton announce;
     private javax.swing.JButton cohort;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton internshipapproval;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

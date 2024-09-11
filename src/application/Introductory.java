@@ -217,10 +217,10 @@ public class Introductory extends javax.swing.JFrame {
 
     private void EducatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EducatorActionPerformed
         // TODO add your handling code here:
-        admindashboard admindashboardframeFrame = new admindashboard();
+        adminportal adminportalFrame = new adminportal();
 
         // Set the login frame to be visible
-        admindashboardframeFrame.setVisible(true);
+        adminportalFrame.setVisible(true);
 
         // Close the current introductory frame
         this.dispose();
