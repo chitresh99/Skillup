@@ -121,10 +121,10 @@ public class studentviewannouncements extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        studentdashboard2 studentdashboard2Frame = new studentdashboard2();
+        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard();
 
         // Set the login frame to be visible
-        studentdashboard2Frame.setVisible(true);
+        studentdisplaydashboardFrame.setVisible(true);
 
         // Close the current introductory frame
         this.dispose();

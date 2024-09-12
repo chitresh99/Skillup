@@ -26,7 +26,7 @@ public class studentportal extends javax.swing.JFrame {
     public Connection getConnection() {
         Connection conn = null;
         try {
-            // Replace with your MySQL credentials and database URL
+            
             String url = "jdbc:mysql://localhost:3306/skillup";
             String user = "root"; 
             String password = "CHIR2502004|";
@@ -44,9 +44,10 @@ public class studentportal extends javax.swing.JFrame {
         if (conn != null) {
             try {
                 String sql = "SELECT COUNT(*) FROM signup WHERE email = ?";
+                //used to execute sql queries
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, email);
-                ResultSet rs = pstmt.executeQuery();
+                ResultSet rs = pstmt.executeQuery(); //storing the result
                 if (rs.next() && rs.getInt(1) > 0) {
                     return true;
                 }
@@ -57,7 +58,7 @@ public class studentportal extends javax.swing.JFrame {
         return false;
     }
 
-    // Function to insert user data after signup
+    
     public void signUpUser() {
         String userEmail = email.getText();
         
@@ -79,7 +80,7 @@ public class studentportal extends javax.swing.JFrame {
                 int rowsInserted = pstmt.executeUpdate();
                 if (rowsInserted > 0) {
                     JOptionPane.showMessageDialog(null, "Signup successful!");
-                    moveToDashboard(); // Move to the student dashboard
+                    moveToDashboard(); 
                 }
 
             } catch (Exception e) {
@@ -93,8 +94,8 @@ public class studentportal extends javax.swing.JFrame {
     
     public void moveToDashboard() {
         this.setVisible(false);
-        studentdashboard dashboard = new studentdashboard(); // Create an instance of studentdashboard
-        dashboard.setVisible(true); // Show the studentdashboard frame
+        studentdashboard dashboard = new studentdashboard(); 
+        dashboard.setVisible(true); 
     }
     /**
      * This method is called from within the constructor to initialize the form.

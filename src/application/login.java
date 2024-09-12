@@ -169,7 +169,7 @@ public class login extends javax.swing.JFrame {
      private boolean validateLogin(String email, String password) {
         boolean isValid = false;
         try {
-            // Establish database connection
+            
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
             // SQL query to check if user exists
@@ -204,11 +204,11 @@ public class login extends javax.swing.JFrame {
      String email = this.email.getText();  // Accessing the email field
     String password = new String(this.password.getPassword());  // Accessing the password field
 
-    // Validate user credentials
+   
     if (validateLogin(email, password)) {
-        // Open student dashboard
-        studentdashboard2 studentdashboard2Frame = new studentdashboard2();
-        studentdashboard2Frame.setVisible(true);
+        
+        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard();
+        studentdisplaydashboardFrame.setVisible(true);
         this.dispose();
     } else {
         // Show error message
@@ -219,10 +219,10 @@ public class login extends javax.swing.JFrame {
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         studentportal studentportalFrame = new studentportal();
 
-        // Set the login frame to be visible
+        
         studentportalFrame.setVisible(true);
 
-        // Close the current introductory frame
+        
         this.dispose();
     }//GEN-LAST:event_BackActionPerformed
 
