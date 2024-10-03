@@ -301,7 +301,7 @@ public class studentdashboard extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Data inserted successfully.");
 
         
-        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard(loggedInEmail);
+        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard();
         studentdisplaydashboardFrame.setVisible(true);
         this.dispose();
 

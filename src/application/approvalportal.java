@@ -8,15 +8,78 @@ package application;
  *
  * @author CHITRESH
  */
-public class approvalportal extends javax.swing.JFrame {
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+
+public class approvalportal extends javax.swing.JFrame {
+    private DefaultTableModel tableModel;
+    private Connection connection;
+    
     /**
      * Creates new form approvalportal
      */
     public approvalportal() {
-        initComponents();
+        initComponents(); // This should set up your JFrame and other components
+
+    // Initialize jTable1 if it's not done in initComponents
+    jTable1 = new JTable();
+    // Now set the model
+    jTable1.setModel(new DefaultTableModel());
+    connectToDatabase();
+    fetchDetails();
+        
+    }
+    
+    
+   private void connectToDatabase() {
+        String url = "jdbc:mysql://localhost:3306/skillup"; // Update with your database URL
+        String username = "root"; // Your MySQL username
+        String password = "CHIR2502004|"; // Your MySQL password
+
+        try {
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database connection error: " + e.getMessage());
+        }
+    }
+   
+   
+    
+    private void fetchDetails() {
+        String query = "SELECT fullname, studentid, certificate_image, uploaded_at, internship_domain FROM certificates"; // Adjust query
+    try {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // Clear existing data
+        tableModel.setRowCount(0); // Clear the table
+
+        while (resultSet.next()) {
+            String fullname = resultSet.getString("fullname");
+            String studentid = resultSet.getString("studentid");
+            Blob certificateImage = resultSet.getBlob("certificate_image");
+            String uploadedAt = resultSet.getString("uploaded_at");
+            String cohortName = resultSet.getString("cohort_name");
+            String markStatus = resultSet.getString("mark_status");
+
+            // Determine if the certificate is uploaded
+            String status = (certificateImage != null) ? "Uploaded" : "Not Uploaded";
+
+            // Add row data to the model
+            tableModel.addRow(new Object[]{fullname, studentid, status, cohortName, markStatus});
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error fetching data: " + e.getMessage());
     }
 
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,6 +150,11 @@ public class approvalportal extends javax.swing.JFrame {
                 "Name of the Student", "Student ID", "Certificate Upload status", "Cohort Name", "Mark status"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mouseclick(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Mark Status");
@@ -107,17 +175,15 @@ public class approvalportal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(jButton1)))
+                    .addComponent(jButton1))
                 .addContainerGap(58, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -153,7 +219,20 @@ public class approvalportal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    // Method to update mark status in the database
+private void updateMarkStatusInDatabase(String studentId, String newStatus) {
+    String updateQuery = "UPDATE certificates SET mark_status = ? WHERE studentid = ?";
+    try {
+        PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+        preparedStatement.setString(1, newStatus);
+        preparedStatement.setString(2, studentId);
+        preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error updating mark status: " + e.getMessage());
+    }
+}
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -168,6 +247,23 @@ public class approvalportal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BackActionPerformed
 
+    private void mouseclick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mouseclick
+        int row = jTable1.getSelectedRow();
+    if (row != -1) {
+        String currentStatus = (String) jTable1.getValueAt(row, 4); // Assuming 'Mark Status' is in the 5th column (index 4)
+
+        // Toggle the mark status
+        String newStatus = currentStatus.equals("Complete") ? "Incomplete" : "Complete";
+        jTable1.setValueAt(newStatus, row, 4); // Update the value in the table
+
+        // Optionally, you may want to update the database as well
+        String studentId = (String) jTable1.getValueAt(row, 1); // Get Student ID
+        updateMarkStatusInDatabase(studentId, newStatus);
+    }
+    
+    
+    }//GEN-LAST:event_mouseclick
+     
     /**
      * @param args the command line arguments
      */

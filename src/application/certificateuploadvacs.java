@@ -5,13 +5,24 @@
 package application;
 
 import javax.swing.JFileChooser;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Timestamp;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author CHITRESH
  */
 public class certificateuploadvacs extends javax.swing.JFrame {
-
+    private String certificateFilePath = null;
     /**
      * Creates new form certificateuploadinternship
      */
@@ -35,9 +46,14 @@ public class certificateuploadvacs extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        vacsdomain = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         Upload = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        fullname = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        studentid = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +84,7 @@ public class certificateuploadvacs extends javax.swing.JFrame {
                 .addComponent(Back)
                 .addGap(148, 148, 148)
                 .addComponent(jLabel1)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,9 +106,9 @@ public class certificateuploadvacs extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Don't see your internship here ? Don't worry you can enter it manually ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        vacsdomain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                vacsdomainActionPerformed(evt);
             }
         });
 
@@ -107,23 +123,49 @@ public class certificateuploadvacs extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Name :");
+
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Student Id :");
+
+        jButton1.setText("Complete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Upload)))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Upload))
+                            .addComponent(vacsdomain, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(studentid, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(42, 42, 42)
+                                .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,55 +179,62 @@ public class certificateuploadvacs extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addComponent(vacsdomain, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentid, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Upload))
-                .addGap(0, 95, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addComponent(jButton1)
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void vacsdomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vacsdomainActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_vacsdomainActionPerformed
 
     private void UploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadActionPerformed
       JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select Certificate");
 
-    // Show the file chooser dialog
-    int result = fileChooser.showOpenDialog(this);
-
-    // If a file is selected, get the file path
-    if (result == JFileChooser.APPROVE_OPTION) {
-        String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-        System.out.println("Selected file: " + filePath);
-     
-    } else {
-        System.out.println("File selection cancelled.");
-    }
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            certificateFilePath = selectedFile.getAbsolutePath();
+            JOptionPane.showMessageDialog(this, "Certificate uploaded: " + selectedFile.getName());
+        } else {
+            JOptionPane.showMessageDialog(this, "No file selected");
+        }
     }//GEN-LAST:event_UploadActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard(loggedInEmail);
+        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard();
 
         // Set the login frame to be visible
         studentdisplaydashboardFrame.setVisible(true);
@@ -194,6 +243,54 @@ public class certificateuploadvacs extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BackActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String name = fullname.getText();
+        String studentID = studentid.getText();
+        String domain = vacsdomain.getText().isEmpty() ? jComboBox1.getSelectedItem().toString() : vacsdomain.getText();
+
+        if (name.isEmpty() || studentID.isEmpty() || certificateFilePath == null || certificateFilePath.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields and upload a certificate.");
+        } else {
+            // Call the method to upload details to the database
+            uploadDetailsToDatabase(name, studentID, domain, certificateFilePath);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void uploadDetailsToDatabase(String name, String studentID, String domain, String certificateFilePath) {
+        // Database credentials
+        String url = "jdbc:mysql://localhost:3306/skillup"; // Replace with your database URL
+        String username = "root"; // Replace with your MySQL username
+        String password = "CHIR2502004|"; // Replace with your MySQL password
+
+        String insertSQL = "INSERT INTO certificatesvacs (vacs_topic, manual_topic, fullname, studentid, certificate_image, uploaded_at) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+
+            // Set the values for the SQL query
+            preparedStatement.setString(1, domain); // internship_domain
+            preparedStatement.setString(2, domain); // manual_domain (assuming same as internship_domain for now)
+            preparedStatement.setString(3, name); // fullname
+            preparedStatement.setString(4, studentID); // studentid
+
+            // Read the certificate file and set it as a blob
+            InputStream inputStream = new FileInputStream(new File(certificateFilePath));
+            preparedStatement.setBlob(5, inputStream); // certificate_image
+
+            // Set the current timestamp
+            preparedStatement.setTimestamp(6, new Timestamp(System.currentTimeMillis())); // uploaded_at
+
+            // Execute the query
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(this, "Data uploaded successfully!");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error uploading data: " + e.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -233,13 +330,18 @@ public class certificateuploadvacs extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Upload;
+    private javax.swing.JTextField fullname;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField studentid;
+    private javax.swing.JTextField vacsdomain;
     // End of variables declaration//GEN-END:variables
 }
