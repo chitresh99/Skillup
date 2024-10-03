@@ -167,32 +167,32 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
      
      private boolean validateLogin(String email, String password) {
-        boolean isValid = false;
-        try {
-            
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        String loggedInEmail = null;  // Store the email if login is successful
+    try {
+        Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            // SQL query to check if user exists
-            String sql = "SELECT * FROM signup WHERE email = ? AND password = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, email);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
+        // SQL query to check if user exists based on email and password
+        String sql = "SELECT email FROM signup WHERE email = ? AND password = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, email);
+        pstmt.setString(2, password);
+        ResultSet rs = pstmt.executeQuery();
 
-            // Check if user exists
-            if (rs.next()) {
-                isValid = true;
-            }
-
-            // Close resources
-            rs.close();
-            pstmt.close();
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "An error occurred while connecting to the database.", "Database Error", JOptionPane.ERROR_MESSAGE);
+        // Check if user exists
+        if (rs.next()) {
+            loggedInEmail = rs.getString("email");  // Retrieve the logged-in user's email
         }
-        return isValid;
+
+        // Close resources
+        rs.close();
+        pstmt.close();
+        conn.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "An error occurred while connecting to the database.", "Database Error", JOptionPane.ERROR_MESSAGE);
+    }
+    return loggedInEmail;
+
     }
 
     

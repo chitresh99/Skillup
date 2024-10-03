@@ -23,7 +23,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
     /**
      * Creates new form studentdisplaydashboard
      */
-    public studentdisplaydashboard() {
+    public studentdisplaydashboard(String loggedInEmail) {
         initComponents();
         fetchLatestStudentData();
     }
@@ -34,13 +34,12 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
         ResultSet rs = null;
 
         try {
-            // Establish the connection to the database
+            
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            // SQL query to get the latest row based on id (or use a timestamp column if available)
+           
             String sql = "SELECT * FROM studentdetails ORDER BY student_id DESC LIMIT 1";
 
-            // Prepare the statement and execute the query
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
 
@@ -469,7 +468,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new studentdisplaydashboard().setVisible(true);
+                new studentdisplaydashboard(loggedInEmail).setVisible(true);
             }
         });
     }

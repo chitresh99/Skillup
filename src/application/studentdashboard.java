@@ -273,17 +273,17 @@ public class studentdashboard extends javax.swing.JFrame {
     PreparedStatement preparedStatement = null;
 
     try {
-        // Establish the connection
+        
         connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 
-        // Create the SQL insert query
+        
         String sql = "INSERT INTO studentdetails (name, branch, division, year, roll_no, cgpa, year_of_graduation, hsc_marks, ssc_marks) "
                      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // Create a PreparedStatement
+        
         preparedStatement = connection.prepareStatement(sql);
 
-        // Set the parameters
+        
         preparedStatement.setString(1, name.getText());
         preparedStatement.setString(2, branch.getText());
         preparedStatement.setString(3, division.getText());
@@ -294,14 +294,14 @@ public class studentdashboard extends javax.swing.JFrame {
         preparedStatement.setString(8, hscmarks.getText());
         preparedStatement.setString(9, sscmarks.getText());
 
-        // Execute the query
+        
         preparedStatement.executeUpdate();
 
-        // Show a success message
+
         JOptionPane.showMessageDialog(null, "Data inserted successfully.");
 
-        // Optionally, close the current frame and open another
-        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard();
+        
+        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard(loggedInEmail);
         studentdisplaydashboardFrame.setVisible(true);
         this.dispose();
 
