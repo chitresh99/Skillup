@@ -48,10 +48,10 @@ public class login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(18, 56, 81));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel2.setBackground(new java.awt.Color(18, 56, 81));
         jPanel2.setForeground(new java.awt.Color(0, 0, 153));
 
         jLabel1.setFont(new java.awt.Font("Adobe Clean ExtraBold", 0, 18)); // NOI18N
@@ -86,10 +86,10 @@ public class login extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("EMAIL");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("PASSWORD");
 
         email.addActionListener(new java.awt.event.ActionListener() {

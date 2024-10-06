@@ -61,11 +61,11 @@ public class studentdashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(18, 56, 81));
+        jPanel1.setForeground(new java.awt.Color(18, 56, 81));
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
-        jPanel2.setForeground(new java.awt.Color(0, 0, 204));
+        jPanel2.setBackground(new java.awt.Color(18, 56, 81));
+        jPanel2.setForeground(new java.awt.Color(18, 56, 81));
 
         jLabel1.setFont(new java.awt.Font("Adobe Clean Black", 0, 18)); // NOI18N
         jLabel1.setText("Student Details");
@@ -98,11 +98,11 @@ public class studentdashboard extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Name :");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Branch");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Branch :");
 
         branch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,25 +110,29 @@ public class studentdashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Division");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Division :");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("YEAR :");
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("ROLL NO");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("CGPA ");
 
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("YEAR OF GRADUATION");
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("HSC MARKS ");
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("SSC MARKS");
 
         complete.setText("COMPLETE");
@@ -138,7 +142,7 @@ public class studentdashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Student ID :");
 
         yearcombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FE", "SE", "TE", "BE" }));

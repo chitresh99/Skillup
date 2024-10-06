@@ -57,10 +57,10 @@ public class certificateuploadvacs extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(18, 56, 81));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel2.setBackground(new java.awt.Color(18, 56, 81));
         jPanel2.setForeground(new java.awt.Color(0, 0, 204));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -96,14 +96,16 @@ public class certificateuploadvacs extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Select your course based assesment internship :- ");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Oracle Database Foundations", "Oracle Java Certification", "Hacker Rank" }));
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Don't see your internship here ? Don't worry you can enter it manually ");
 
         vacsdomain.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +115,7 @@ public class certificateuploadvacs extends javax.swing.JFrame {
         });
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Certificate Upload :- ");
 
         Upload.setText("Upload");
@@ -123,10 +125,10 @@ public class certificateuploadvacs extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Name :");
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Student Id :");
 
         jButton1.setText("Complete");

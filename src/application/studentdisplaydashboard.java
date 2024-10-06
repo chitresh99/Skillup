@@ -108,11 +108,12 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(18, 56, 81));
 
-        jPanel2.setBackground(new java.awt.Color(51, 0, 204));
+        jPanel2.setBackground(new java.awt.Color(18, 56, 81));
         jPanel2.setForeground(new java.awt.Color(51, 0, 255));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel1.setText("Student Details Display");
 
@@ -144,8 +145,9 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Name :");
 
         name.addActionListener(new java.awt.event.ActionListener() {
@@ -154,8 +156,9 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Year:");
 
         year.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +167,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Branch :");
 
         branch.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +176,8 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Division:");
 
         division.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +186,8 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             }
         });
 
-        rollnolabel.setForeground(new java.awt.Color(0, 0, 0));
+        rollnolabel.setBackground(new java.awt.Color(255, 255, 255));
+        rollnolabel.setForeground(new java.awt.Color(255, 255, 255));
         rollnolabel.setText("Roll No :");
 
         rollno.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +196,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("CGPA :");
 
         cgpa.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +205,8 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Year of Graduation :");
 
         yearofgraduation.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +216,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Proceed to upload certificates of your respected domains :");
 
         internship.setText("Internship");
@@ -227,7 +233,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Check for announcements :");
 
         jButton4.setText("Announcements");
@@ -237,7 +243,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Mentor and Mentee List :");
 
         mentorandmentee.setText("Mentor and Mentee List");
@@ -342,7 +348,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mentorandmentee))
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

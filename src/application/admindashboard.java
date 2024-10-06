@@ -42,16 +42,24 @@ public class admindashboard extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(18, 56, 81));
         jPanel2.setForeground(new java.awt.Color(0, 0, 255));
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel3.setBackground(new java.awt.Color(18, 56, 81));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Adobe Clean ExtraBold", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ADMIN DASHBOARD");
 
+        Back.setBackground(new java.awt.Color(255, 255, 0));
+        Back.setForeground(new java.awt.Color(0, 0, 0));
         Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -60,9 +68,9 @@ public class admindashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(Back)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(246, 246, 246))
+                .addGap(162, 162, 162)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,10 +82,13 @@ public class admindashboard extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Adobe Clean Black", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Check Status for students");
 
+        cohort.setBackground(new java.awt.Color(255, 255, 0));
+        cohort.setForeground(new java.awt.Color(0, 0, 0));
         cohort.setText("Cohort");
         cohort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +96,8 @@ public class admindashboard extends javax.swing.JFrame {
             }
         });
 
+        internshipapproval.setBackground(new java.awt.Color(255, 255, 0));
+        internshipapproval.setForeground(new java.awt.Color(0, 0, 0));
         internshipapproval.setText("Internships");
         internshipapproval.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,9 +105,13 @@ public class admindashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Adobe Clean ExtraBold", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Make announcements");
 
+        announce.setBackground(new java.awt.Color(255, 255, 0));
+        announce.setForeground(new java.awt.Color(0, 0, 0));
         announce.setText("Announce");
         announce.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,9 +130,9 @@ public class admindashboard extends javax.swing.JFrame {
                     .addComponent(announce)
                     .addComponent(internshipapproval)
                     .addComponent(cohort)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(408, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,6 +213,16 @@ public class admindashboard extends javax.swing.JFrame {
         // Close the current introductory frame
         this.dispose();
     }//GEN-LAST:event_cohortActionPerformed
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+       adminportal adminportalFrame = new adminportal();
+
+        // Set the login frame to be visible
+        adminportalFrame.setVisible(true);
+
+        // Close the current introductory frame
+        this.dispose();
+    }//GEN-LAST:event_BackActionPerformed
 
     /**
      * @param args the command line arguments

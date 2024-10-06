@@ -87,12 +87,12 @@ public class internshipapproval extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(18, 56, 81));
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel2.setBackground(new java.awt.Color(18, 56, 81));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Adobe Clean Black", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Adobe Clean Black", 0, 24)); // NOI18N
         jLabel1.setText("Admin approval (VACS)");
 
         Back.setText("Back");
@@ -109,7 +109,7 @@ public class internshipapproval extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(Back)
-                .addGap(163, 163, 163)
+                .addGap(113, 113, 113)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
