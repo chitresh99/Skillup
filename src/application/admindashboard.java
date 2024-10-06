@@ -188,10 +188,10 @@ public class admindashboard extends javax.swing.JFrame {
 
     private void cohortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cohortActionPerformed
         // TODO add your handling code here:
-        approvalportal approvalportalFrame = new approvalportal();
+        approve approveFrame = new approve();
 
         // Set the login frame to be visible
-        approvalportalFrame.setVisible(true);
+        approveFrame.setVisible(true);
 
         // Close the current introductory frame
         this.dispose();

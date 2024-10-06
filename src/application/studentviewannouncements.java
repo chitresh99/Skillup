@@ -3,7 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package application;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author CHITRESH
@@ -15,8 +21,30 @@ public class studentviewannouncements extends javax.swing.JFrame {
      */
     public studentviewannouncements() {
         initComponents();
-    }
+        loadAnnouncements();
 
+    }
+    
+    
+    private void loadAnnouncements() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Clear previous rows if any
+
+        // Query the database and populate the table with the announcement data
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT date, announcement FROM announcement")) {
+
+            // Loop through the result set and add each announcement to the table
+            while (rs.next()) {
+                String date = rs.getString("date");
+                String announcement = rs.getString("announcement");
+                model.addRow(new Object[]{date, announcement});
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error loading announcements: " + e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,6 +112,11 @@ public class studentviewannouncements extends javax.swing.JFrame {
                 "Date", "Announcements"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addmouseclick(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -129,6 +162,21 @@ public class studentviewannouncements extends javax.swing.JFrame {
         // Close the current introductory frame
         this.dispose();
     }//GEN-LAST:event_BackActionPerformed
+
+    private void addmouseclick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addmouseclick
+        jTable1.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                int selectedRow = jTable1.getSelectedRow(); // Get the index of the selected row
+
+                // Retrieve the data from the selected row (Date and Announcement)
+                String date = jTable1.getValueAt(selectedRow, 0).toString();
+                String announcement = jTable1.getValueAt(selectedRow, 1).toString();
+
+                // Display the announcement details in a dialog or take another action
+                JOptionPane.showMessageDialog(null, "Announcement Date: " + date + "\nDetails: " + announcement);
+            }
+        });
+    }//GEN-LAST:event_addmouseclick
 
     /**
      * @param args the command line arguments

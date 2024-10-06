@@ -4,6 +4,14 @@
  */
 package application;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author CHITRESH
@@ -152,7 +160,52 @@ public class adminannouncement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AnnounceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnounceActionPerformed
-        // TODO add your handling code here:
+                                               
+    // Retrieve data from the text fields
+    String date = jTextField1.getText();
+    String announcement = jTextArea1.getText();
+
+    // Database connection parameters
+    String url = "jdbc:mysql://localhost:3306/skillup";  // Replace with your database name
+    String user = "root";  // Replace with your MySQL username
+    String password = "CHIR2502004|";  // Replace with your MySQL password
+
+    // Establish a database connection and insert the data
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    try {
+        // 1. Establish a connection
+        connection = DriverManager.getConnection(url, user, password);
+
+        // 2. Create a SQL insert statement
+        String sql = "INSERT INTO announcement (Date, Announcement) VALUES (?, ?)";
+
+        // 3. Create a PreparedStatement object
+        preparedStatement = connection.prepareStatement(sql);
+
+        // 4. Set the values for the prepared statement
+        preparedStatement.setString(1, date);  // Set the date value
+        preparedStatement.setString(2, announcement);  // Set the announcement value
+
+        // 5. Execute the query
+        int rowsInserted = preparedStatement.executeUpdate();
+        if (rowsInserted > 0) {
+            JOptionPane.showMessageDialog(this, "Announcement successfully added!");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error inserting data: " + e.getMessage());
+    } finally {
+        try {
+            if (preparedStatement != null) preparedStatement.close();
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+              
+
     }//GEN-LAST:event_AnnounceActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed

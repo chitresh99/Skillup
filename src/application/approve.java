@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package application;
+
+/**
+ *
+ * @author CHITRESH
+ */
+
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,28 +20,25 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.sql.*;
 
-
-/**
- *
- * @author CHITRESH
- */
-public class internshipapproval extends javax.swing.JFrame {
+public class approve extends javax.swing.JFrame {
 
     /**
-     * Creates new form internshipapproval
+     * Creates new form approve
      */
-    public internshipapproval() {
+    public approve() {
         initComponents();
         fillTableData();
+       
+//        addRowClickListener(); 
     }
 
     
-   private void fillTableData() {
+    private void fillTableData() {
         String url = "jdbc:mysql://localhost:3306/skillup"; 
         String user = "root"; 
         String password = "CHIR2502004|"; 
 
-        String query = "SELECT fullname, studentid, vacs_topic, certificate_image FROM certificatesvacs"; 
+        String query = "SELECT fullname, studentid, internship_domain, certificate_image FROM certificates"; 
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // Clear existing rows
@@ -47,7 +50,7 @@ public class internshipapproval extends javax.swing.JFrame {
             while (resultSet.next()) {
                 String fullName = resultSet.getString("fullname");
                 String studentId = resultSet.getString("studentid");
-                String internshipDomain = resultSet.getString("vacs_topic");
+                String internshipDomain = resultSet.getString("internship_domain");
                 Blob blob = resultSet.getBlob("certificate_image"); // Retrieve BLOB
                 ImageIcon certificateImage = null;
 
@@ -69,6 +72,7 @@ public class internshipapproval extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error fetching data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,49 +83,14 @@ public class internshipapproval extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        Back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel2.setBackground(new java.awt.Color(0, 0, 255));
-
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Adobe Clean Black", 0, 14)); // NOI18N
-        jLabel1.setText("Admin approval (VACS)");
-
-        Back.setText("Back");
-        Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(Back)
-                .addGap(163, 163, 163)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Back))
-                .addGap(15, 15, 15))
-        );
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,7 +100,7 @@ public class internshipapproval extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Name of the Student", "Student ID", "Certificate Image", "Vacs Name"
+                "Full Name", "Student Id", "Certificate", "Internship Domain"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,23 +110,34 @@ public class internshipapproval extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 74, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(190, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 49, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,18 +155,8 @@ public class internshipapproval extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        admindashboard admindashboardFrame = new admindashboard();
-
-        // Set the login frame to be visible
-        admindashboardFrame.setVisible(true);
-
-        // Close the current introductory frame
-        this.dispose();
-    }//GEN-LAST:event_BackActionPerformed
-
     private void addRowClickListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRowClickListener
-     // TODO add your handling code here:
+        // TODO add your handling code here:
          jTable1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 int row = jTable1.getSelectedRow();
@@ -219,9 +189,9 @@ public class internshipapproval extends javax.swing.JFrame {
                             ImageIcon certificateImage = new ImageIcon(bufferedImage);
                             
                             // Create a dialog to display the image
-                            JDialog imageDialog = new JDialog(internshipapproval.this, "Certificate Viewer - " + fullName, true);
+                            JDialog imageDialog = new JDialog(approve.this, "Certificate Viewer - " + fullName, true);
                             imageDialog.setSize(600, 400);
-                            imageDialog.setLocationRelativeTo(internshipapproval.this);
+                            imageDialog.setLocationRelativeTo(approve.this);
 
                             // Create a label to display the image
                             JLabel label = new JLabel();
@@ -232,16 +202,23 @@ public class internshipapproval extends javax.swing.JFrame {
                             imageDialog.setVisible(true);
                         } catch (IOException | SQLException ex) {
                             ex.printStackTrace();
-                            JOptionPane.showMessageDialog(internshipapproval.this, "Error displaying image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(approve.this, "Error displaying image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(internshipapproval.this, "Certificate not uploaded", "Info", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(approve.this, "Certificate not uploaded", "Info", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
         });
     }//GEN-LAST:event_addRowClickListener
+    
+    
+    
 
+
+     
+     
+    
     /**
      * @param args the command line arguments
      */
@@ -259,27 +236,25 @@ public class internshipapproval extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(internshipapproval.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(approve.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(internshipapproval.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(approve.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(internshipapproval.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(approve.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(internshipapproval.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(approve.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new internshipapproval().setVisible(true);
+                new approve().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton Back;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

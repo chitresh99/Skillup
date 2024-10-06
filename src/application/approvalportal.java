@@ -4,80 +4,57 @@
  */
 package application;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author CHITRESH
- */
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
+*/
 
 public class approvalportal extends javax.swing.JFrame {
-    private DefaultTableModel tableModel;
-    private Connection connection;
     
-    /**
-     * Creates new form approvalportal
-     */
-    public approvalportal() {
-        initComponents(); // This should set up your JFrame and other components
-
-    // Initialize jTable1 if it's not done in initComponents
-    jTable1 = new JTable();
-    // Now set the model
-    jTable1.setModel(new DefaultTableModel());
-    connectToDatabase();
-    fetchDetails();
-        
+    public approvalportal() throws SQLException {
+        initComponents();
+        fillTableData();// This should set up your JFrame and other components
     }
-    
-    
-   private void connectToDatabase() {
-        String url = "jdbc:mysql://localhost:3306/skillup"; // Update with your database URL
-        String username = "root"; // Your MySQL username
-        String password = "CHIR2502004|"; // Your MySQL password
+   
+    private void fillTableData() throws SQLException {
+        String url = "jdbc:mysql://localhost:3306/your_database"; // Replace with your DB URL
+        String user = "your_username"; // Replace with your DB username
+        String password = "your_password"; // Replace with your DB password
 
-        try {
-            connection = DriverManager.getConnection(url, username, password);
+        String query = "SELECT full_name, student_id, internship_domain, certificate_image FROM students"; // Adjust the query as needed
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                String fullName = resultSet.getString("full_name");
+                String studentId = resultSet.getString("student_id");
+                String internshipDomain = resultSet.getString("internship_domain");
+                String certificateImage = resultSet.getString("certificate_image") != null ? "Uploaded" : "Not Uploaded";
+
+                model.addRow(new Object[]{
+                    fullName,
+                    studentId,
+                    internshipDomain,
+                    certificateImage
+                });
+            }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Database connection error: " + e.getMessage());
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error fetching data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
-   
-   
-    
-    private void fetchDetails() {
-        String query = "SELECT fullname, studentid, certificate_image, uploaded_at, internship_domain FROM certificates"; // Adjust query
-    try {
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
-
-        // Clear existing data
-        tableModel.setRowCount(0); // Clear the table
-
-        while (resultSet.next()) {
-            String fullname = resultSet.getString("fullname");
-            String studentid = resultSet.getString("studentid");
-            Blob certificateImage = resultSet.getBlob("certificate_image");
-            String uploadedAt = resultSet.getString("uploaded_at");
-            String cohortName = resultSet.getString("cohort_name");
-            String markStatus = resultSet.getString("mark_status");
-
-            // Determine if the certificate is uploaded
-            String status = (certificateImage != null) ? "Uploaded" : "Not Uploaded";
-
-            // Add row data to the model
-            tableModel.addRow(new Object[]{fullname, studentid, status, cohortName, markStatus});
-        }
-
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error fetching data: " + e.getMessage());
-    }
-
     }
     
     /**
@@ -95,9 +72,6 @@ public class approvalportal extends javax.swing.JFrame {
         Back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,7 +101,7 @@ public class approvalportal extends javax.swing.JFrame {
                 .addComponent(Back)
                 .addGap(145, 145, 145)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(343, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,68 +115,34 @@ public class approvalportal extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name of the Student", "Student ID", "Certificate Upload status", "Cohort Name", "Mark status"
+                "Full Name", "Student Id", "Internship Domain", "Certificate"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mouseclick(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
-
-        jButton1.setText("Mark Status");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Filter Status");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Completed", "Pending", " " }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton1))
-                .addContainerGap(58, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -220,22 +160,6 @@ public class approvalportal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
-    
-    // Method to update mark status in the database
-private void updateMarkStatusInDatabase(String studentId, String newStatus) {
-    String updateQuery = "UPDATE certificates SET mark_status = ? WHERE studentid = ?";
-    try {
-        PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
-        preparedStatement.setString(1, newStatus);
-        preparedStatement.setString(2, studentId);
-        preparedStatement.executeUpdate();
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error updating mark status: " + e.getMessage());
-    }
-}
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         admindashboard admindashboardFrame = new admindashboard();
@@ -246,23 +170,6 @@ private void updateMarkStatusInDatabase(String studentId, String newStatus) {
         // Close the current introductory frame
         this.dispose();
     }//GEN-LAST:event_BackActionPerformed
-
-    private void mouseclick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mouseclick
-        int row = jTable1.getSelectedRow();
-    if (row != -1) {
-        String currentStatus = (String) jTable1.getValueAt(row, 4); // Assuming 'Mark Status' is in the 5th column (index 4)
-
-        // Toggle the mark status
-        String newStatus = currentStatus.equals("Complete") ? "Incomplete" : "Complete";
-        jTable1.setValueAt(newStatus, row, 4); // Update the value in the table
-
-        // Optionally, you may want to update the database as well
-        String studentId = (String) jTable1.getValueAt(row, 1); // Get Student ID
-        updateMarkStatusInDatabase(studentId, newStatus);
-    }
-    
-    
-    }//GEN-LAST:event_mouseclick
      
     /**
      * @param args the command line arguments
@@ -294,17 +201,14 @@ private void updateMarkStatusInDatabase(String studentId, String newStatus) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new approvalportal().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
