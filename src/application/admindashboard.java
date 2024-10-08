@@ -98,7 +98,7 @@ public class admindashboard extends javax.swing.JFrame {
 
         internshipapproval.setBackground(new java.awt.Color(255, 255, 0));
         internshipapproval.setForeground(new java.awt.Color(0, 0, 0));
-        internshipapproval.setText("Internships");
+        internshipapproval.setText("Vacs");
         internshipapproval.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 internshipapprovalActionPerformed(evt);
