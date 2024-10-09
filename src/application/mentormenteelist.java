@@ -134,10 +134,10 @@ public class mentormenteelist extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard();
+         afterlogindisplay afterlogindisplayFrame = new afterlogindisplay ();
 
         // Set the login frame to be visible
-        studentdisplaydashboardFrame.setVisible(true);
+        afterlogindisplayFrame.setVisible(true);
 
         // Close the current introductory frame
         this.dispose();

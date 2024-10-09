@@ -236,10 +236,10 @@ public class certificateuploadvacs extends javax.swing.JFrame {
     }//GEN-LAST:event_UploadActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard();
+         afterlogindisplay afterlogindisplayFrame = new afterlogindisplay ();
 
         // Set the login frame to be visible
-        studentdisplaydashboardFrame.setVisible(true);
+        afterlogindisplayFrame.setVisible(true);
 
         // Close the current introductory frame
         this.dispose();

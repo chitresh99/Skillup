@@ -208,8 +208,8 @@ public class login extends javax.swing.JFrame {
    
     if (validateLogin(email, password)) {
         
-        studentdisplaydashboard studentdisplaydashboardFrame = new studentdisplaydashboard();
-        studentdisplaydashboardFrame.setVisible(true);
+        afterlogindisplay afterlogindisplayFrame = new afterlogindisplay();
+         afterlogindisplayFrame.setVisible(true);
         this.dispose();
     } else {
         // Show error message
