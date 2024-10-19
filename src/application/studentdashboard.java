@@ -269,7 +269,7 @@ public class studentdashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_branchActionPerformed
 
     private void completeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeActionPerformed
-        String jdbcURL = "jdbc:mysql://localhost:3306/skillup";
+    String jdbcURL = "jdbc:mysql://localhost:3306/skillup";
     String jdbcUsername = "root";
     String jdbcPassword = "CHIR2502004|";
 

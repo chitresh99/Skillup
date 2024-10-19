@@ -60,7 +60,7 @@ public class studentdisplaydashboard extends javax.swing.JFrame {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error fetching data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
-            // Close the resources
+            
             try {
                 if (rs != null) rs.close();
                 if (stmt != null) stmt.close();

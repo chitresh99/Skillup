@@ -166,14 +166,14 @@ public class adminannouncement extends javax.swing.JFrame {
 
     private void AnnounceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnounceActionPerformed
                                                
-    // Retrieve data from the text fields
+    
     String date = jTextField1.getText();
     String announcement = jTextArea1.getText();
 
-    // Database connection parameters
-    String url = "jdbc:mysql://localhost:3306/skillup";  // Replace with your database name
-    String user = "root";  // Replace with your MySQL username
-    String password = "CHIR2502004|";  // Replace with your MySQL password
+    
+    String url = "jdbc:mysql://localhost:3306/skillup";  
+    String user = "root";  
+    String password = "CHIR2502004|";  
 
     // Establish a database connection and insert the data
     Connection connection = null;
@@ -183,17 +183,17 @@ public class adminannouncement extends javax.swing.JFrame {
         // 1. Establish a connection
         connection = DriverManager.getConnection(url, user, password);
 
-        // 2. Create a SQL insert statement
+        //SQL insert statement
         String sql = "INSERT INTO announcement (Date, Announcement) VALUES (?, ?)";
 
-        // 3. Create a PreparedStatement object
+        
         preparedStatement = connection.prepareStatement(sql);
 
         // 4. Set the values for the prepared statement
         preparedStatement.setString(1, date);  // Set the date value
         preparedStatement.setString(2, announcement);  // Set the announcement value
 
-        // 5. Execute the query
+        // Execute the query
         int rowsInserted = preparedStatement.executeUpdate();
         if (rowsInserted > 0) {
             JOptionPane.showMessageDialog(this, "Announcement successfully added!");

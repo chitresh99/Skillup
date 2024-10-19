@@ -260,15 +260,15 @@ public class approve extends javax.swing.JFrame {
                     String fullName = (String) jTable1.getValueAt(row, 0);
                     Blob blob = null;
 
-                    // Retrieve the BLOB again if you want to display it
-                    String url = "jdbc:mysql://localhost:3306/skillup"; // Replace with your DB URL
-                    String user = "root"; // Replace with your DB username
-                    String password = "CHIR2502004|"; // Replace with your DB password
+                    
+                    String url = "jdbc:mysql://localhost:3306/skillup"; 
+                    String user = "root";
+                    String password = "CHIR2502004|"; 
                     String query = "SELECT certificate_image FROM certificates WHERE studentid = ?";
 
                     try (Connection connection = DriverManager.getConnection(url, user, password);
                          PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                        preparedStatement.setString(1, (String) jTable1.getValueAt(row, 1)); // Get studentId
+                        preparedStatement.setString(1, (String) jTable1.getValueAt(row, 1)); 
                         ResultSet resultSet = preparedStatement.executeQuery();
                         if (resultSet.next()) {
                             blob = resultSet.getBlob("certificate_image");

@@ -155,47 +155,47 @@ public class checkstatus extends javax.swing.JFrame {
     }//GEN-LAST:event_studentidActionPerformed
 
     private void displayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayActionPerformed
-        // Fetch the student ID entered by the user.
+     
     String studentId = studentid.getText();
 
-    // Ensure the student ID is not empty before proceeding.
+    
     if (studentId.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Please enter a Student ID.");
         return;
     }
 
-    // Establish a connection to the database.
+    
     try {
-        // Replace the following values with your database details.
-        String url = "jdbc:mysql://localhost:3306/skillup"; // Update with your database URL
-        String username = "root"; // Update with your database username
-        String password = "CHIR2502004|"; // Update with your database password
+        
+        String url = "jdbc:mysql://localhost:3306/skillup"; 
+        String username = "root"; 
+        String password = "CHIR2502004|"; 
 
         Connection conn = DriverManager.getConnection(url, username, password);
 
-        // Prepare a SQL query to fetch the student name and status using the entered student ID.
+        
         String query = "SELECT name, status FROM approvalstatus WHERE studentid = ?";
         PreparedStatement pstmt = conn.prepareStatement(query);
         pstmt.setString(1, studentId);
 
-        // Execute the query.
+        
         ResultSet rs = pstmt.executeQuery();
 
-        // Check if data is found for the given student ID.
+        
         if (rs.next()) {
-            // Fetch and display the student's name and status.
+           
             String name = rs.getString("name");
             String status = rs.getString("status");
 
             displayname.setText(name);
             displaystatus.setText(status);
         } else {
-            // If no data is found, display "Pending" in the status label.
+            
             displayname.setText("N/A");
             displaystatus.setText("Pending");
         }
 
-        // Close the connection, statement, and result set.
+        
         rs.close();
         pstmt.close();
         conn.close();

@@ -70,7 +70,7 @@ public class studentportal extends javax.swing.JFrame {
         Connection conn = getConnection();
         if (conn != null) {
             try {
-                // No need to insert 'id' because it's auto-incremented
+               
                 String sql = "INSERT INTO signup (name, email, password) VALUES (?, ?, ?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, name.getText());

@@ -263,9 +263,9 @@ public class certificateuploadpage extends javax.swing.JFrame {
     
      private void uploadDetailsToDatabase(String name, String studentID, String domain, String certificateFilePath) {
         // Database credentials
-        String url = "jdbc:mysql://localhost:3306/skillup"; // Replace with your database URL
-        String username = "root"; // Replace with your MySQL username
-        String password = "CHIR2502004|"; // Replace with your MySQL password
+        String url = "jdbc:mysql://localhost:3306/skillup"; 
+        String username = "root"; 
+        String password = "CHIR2502004|"; 
 
         String insertSQL = "INSERT INTO certificates (internship_domain, manual_domain, fullname, studentid, certificate_image, uploaded_at) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -273,14 +273,14 @@ public class certificateuploadpage extends javax.swing.JFrame {
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
             // Set the values for the SQL query
-            preparedStatement.setString(1, domain); // internship_domain
-            preparedStatement.setString(2, domain); // manual_domain (assuming same as internship_domain for now)
-            preparedStatement.setString(3, name); // fullname
-            preparedStatement.setString(4, studentID); // studentid
+            preparedStatement.setString(1, domain); 
+            preparedStatement.setString(2, domain); 
+            preparedStatement.setString(3, name); 
+            preparedStatement.setString(4, studentID);
 
-            // Read the certificate file and set it as a blob
+            
             InputStream inputStream = new FileInputStream(new File(certificateFilePath));
-            preparedStatement.setBlob(5, inputStream); // certificate_image
+            preparedStatement.setBlob(5, inputStream); 
 
             // Set the current timestamp
             preparedStatement.setTimestamp(6, new Timestamp(System.currentTimeMillis())); // uploaded_at
