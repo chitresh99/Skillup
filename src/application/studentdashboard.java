@@ -68,6 +68,7 @@ public class studentdashboard extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(18, 56, 81));
 
         jLabel1.setFont(new java.awt.Font("Adobe Clean Black", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Student Details");
 
         Back.setText("Back");

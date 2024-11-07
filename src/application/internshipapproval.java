@@ -153,9 +153,11 @@ public class internshipapproval extends javax.swing.JFrame {
         jLabel2.setText("Name");
 
         jLabel3.setFont(new java.awt.Font("Adobe Clean Black", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Student Id");
 
         jLabel4.setFont(new java.awt.Font("Adobe Clean ExtraBold", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Status");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Approve", "Reject", " " }));

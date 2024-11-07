@@ -52,6 +52,7 @@ public class checkstatus extends javax.swing.JFrame {
         jLabel1.setText("APPROVAL STATUS");
 
         jLabel2.setFont(new java.awt.Font("Adobe Clean Black", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Enter Student Id here :");
 
         studentid.addActionListener(new java.awt.event.ActionListener() {
@@ -61,12 +62,14 @@ public class checkstatus extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Adobe Clean Black", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Name :");
 
         displayname.setBackground(new java.awt.Color(255, 255, 255));
         displayname.setFont(new java.awt.Font("Adobe Clean Black", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Adobe Clean Black", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Status :");
 
         displaystatus.setFont(new java.awt.Font("Adobe Clean ExtraBold", 0, 18)); // NOI18N
